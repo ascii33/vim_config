@@ -75,13 +75,17 @@ set foldenable
 set ruler
 " set statusline=%F%m%r%h%w\ %=#%n\ [%{&fileformat}:%{(&fenc==\"\"?&enc:&fenc).((exists(\"\+bomb\")\ &&\ &bomb)?\"\+B\":\"\").\"\"}:%{strlen(&ft)?&ft:'**'}]\ [%L\\%l,%c]\ %p%%
 " set rulerformat=%43(%=%m%r%h%w#%n\ [%{&fileformat}:%{(&fenc==\"\"?&enc:&fenc).((exists(\"\+bomb\")\ &&\ &bomb)?\"\+B\":\"\").\"\"}:%{strlen(&ft)?&ft:'**'}]\ [%L\\%l,%c]\ %p%%%)
-" set laststatus=1 " 0:disable 1:only one 2:always      
+set laststatus=1 " 0:disable 1:only one 2:always      
 
 " ------ mouse ------
 " set mouse=a  " always use mouse
 " set mousehide " 设置隐藏鼠标光标。
-" set clipboard=unnamed " 与windows共享剪贴板
+
+if has('nvim')
+set clipboard=unnamed " 与windows共享剪贴板
+else
 set clipboard=autoselect  " 可视模式下选择的文本就会被放到系统剪切板中
+endif
 
 " if exists('$TMUX')
 "     let s:isTmux=1
@@ -263,11 +267,11 @@ call plug#end()
 " ------ cscope taglist path ------
  set cscopequickfix=s-,c-,d-,i-,t-,e-
  set tags=./tags;,tags
- cs add ~/work/btstack/cscope.out ~/work/btstack
- set tags+=~/work/btstack/tags
+"  cs add ~/work/btstack/cscope.out ~/work/btstack
+"  set tags+=~/work/btstack/tags
 
- cs add ~/work/fluoride/cscope.out ~/work/fluoride
- set tags+=~/work/fluoride/tags
+"  cs add ~/work/fluoride/cscope.out ~/work/fluoride
+"  set tags+=~/work/fluoride/tags
 
 
 " ------ global tags ------
